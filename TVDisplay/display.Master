@@ -1,0 +1,215 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" EnableViewState="false" CodeBehind="display.master.cs" Inherits="TVDisplay.display" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            /*     background-color:white;*/
+        }
+
+        .arrow {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        * {
+            /*font-family: 'Montserrat', sans-serif;*/
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+     <link href="css/w3_css.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link href="css/font_awesome.css" rel="stylesheet" />
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"/>
+     <link href="css/roboto_font.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    
+
+    <script src="https://your-site-or-cdn.com/fontawesome/v6.0.0-beta3/js/all.js" data-auto-replace-svg="nest"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">    
+        function animateDiv(left, right) {
+            $('#panel_main').css({
+                left: left
+            }).stop(true, true).animate({
+                left: right
+            }, 'slow');
+        }
+
+        $('#btn_left').click(function () {
+            animateDiv($('#panel_main').offset().left, 0);
+        });
+
+        $('#btn_right').click(function () {
+            animateDiv(0, $(window).width() - $('#panel_main').width());
+        });
+        function left() {
+            animateDiv($('#panel_main').offset().left, 0);
+        }
+        function right() {
+            animateDiv(0, $(window).width() - $('#panel_main').width());
+        }
+    </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="w3-light-grey">
+     <form id="form1" runat="server">
+         <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" ></asp:ScriptManager>
+         <div id="leftMenu" class="w3-sidebar w3-left w3-top w3-bar-block w3-card w3-animate-left  w3-hide-large w3-hide-medium"  style="z-index:5; margin-top:51px; display:none; font-size:18px; width:90%; color:white; background-color:#166D89;">
+            <%--<div class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style="height:50px;">Menu</div>--%>
+            <a href="#" style="text-decoration:none; background-color:#f8f8f8; color:red" class="w3-bar-item w3-button w3-border-bottom " onclick="document.getElementById('leftMenu').style.display='none';document.getElementById('overlay2').style.display='none';">Close Menu <span class="w3-right">X</span></a>
+            <a href="Details.aspx" style=" text-decoration:none;" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey">Patient Details</a>
+            <a href="gcs.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">GCS</a>
+            <a href="vitals.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Vitals</a>
+            <a href="fever.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Fever Pack</a>
+            <a href="lab.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Lab Investigations</a>
+            <a href="surgery.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Surgery Details</a>
+            <a href="BldTrans.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Blood Transfusions</a>
+            <a href="Infusions.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Infusions</a>
+            <a href="IO.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Last 24H I/O</a>
+            <a href="documents.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Upload Documents</a>
+            <a href="issues.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Issues</a>
+            <a href="Discharge.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Discharge Status</a>
+            <a href="ventilation.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Ventilation</a>
+            <a href="plan.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Today's Plan</a>
+         </div>
+         
+        <div>
+            <div class="w3-top">
+                <div class="w3-bar w3-text-white w3-large" style="width:100%; background-color:#166D89;">
+                    <a href="#" class="w3-bar-item w3-button w3-xlarge w3-hide-large" onclick="if(document.getElementById('leftMenu').style.display=='none'){document.getElementById('leftMenu').style.display='block';document.getElementById('overlay2').style.display='block';}else if(document.getElementById('leftMenu').style.display=='block'){document.getElementById('leftMenu').style.display='none';document.getElementById('overlay2').style.display='none';}"><i class="fa fa-bars"></i></a>
+                    <div class="w3-bar-item  w3-xlarge "  style="text-shadow:1px 1px 0"; ></div>
+                    <%--<div class="w3-bar-item w3-xlarge" style="float:right;"><a style="text-decoration:none;" title="Logout" href="Login.aspx"><i class="fa fa-power-off"></i> </a></div>--%>
+                    <div style="float:right;"  class="w3-dropdown-hover ">
+                      <a href="#" onclick="if(document.getElementById('rightMenu').style.display=='none'){document.getElementById('rightMenu').style.display='block';document.getElementById('overlay').style.display='block'}else if(document.getElementById('rightMenu').style.display=='block'){document.getElementById('rightMenu').style.display='none';document.getElementById('overlay').style.display='none';}" class="w3-button  w3-hover-text-black w3-hover-white" style="height:51px; padding-top:12px;"><i  class="fa fa-cog w3-xlarge"></i> <i class="fa fa-caret-down"></i></a>
+                      
+                      <div id="rightMenu" class="w3-dropdown-content w3-bar-block w3-card-4" style="right:0; display:none; z-index:5;">
+                        <a href="Home.aspx" style="text-decoration:none;" class="w3-bar-item w3-button w3-medium">Back to Home</a>
+                          <asp:LinkButton Text="Preview Dashboard" OnClick="preview_dash" runat="server" CssClass="w3-bar-item w3-button w3-medium" ></asp:LinkButton>
+                          <asp:LinkButton Text="Logout" OnClick="logout_click" runat="server" CssClass="w3-bar-item w3-button w3-medium" ></asp:LinkButton>
+                      </div>
+                    </div>
+                    
+                    <div class="w3-bar-item  w3-large " style="float:right; padding-top:13px;">
+                        <asp:LinkButton OnClick="tv_click" runat="server" ><i class="fa fa-television w3-xlarge w3-text-white"></i></asp:LinkButton>
+                    </div>
+                </div>
+                <div id="overlay2" class="w3-overlay" onclick="document.getElementById('leftMenu').style.display='none';document.getElementById('overlay2').style.display='none'" style="cursor:pointer">
+
+                </div>
+                <div id="overlay" class="w3-overlay" onclick="document.getElementById('rightMenu').style.display='none';document.getElementById('overlay').style.display='none'" style="cursor:pointer">
+
+                </div>              
+            </div>
+            <div class="w3-main" style="height:90vh; margin-top:100px;">
+                <div class="w3-container" >                   
+                    <div class="w3-row" style="min-height:70vh; height:auto; width:100%; margin-bottom:60px; display:flex;">
+                        <div class="w3-col l1 w3-hide-medium w3-hide-small w3-cell-row w3-padding-large " >
+                           <%-- <div class="w3-cell w3-cell-middle" style="text-align:center;">
+                                <asp:ImageButton ID="btn_left" ClientIDMode="Static"  ImageUrl="Images/left.png" OnClick="move_left" CssClass="arrow" runat="server" />
+                            </div>--%>
+                        </div> 
+                        <div class="w3-col l10 s12 m12" style=" width:100%;">
+                            <div  runat="server" class="w3-card-4 w3-white w3-animate-opacity w3-round-large"  style=" width:100%;">
+                                <div class=" w3-row " style="display:flex; min-height:80vh; height:contain;">
+                                    <div class="w3-col l3 w3-hide-medium w3-hide-small " style="color:white; background-color:#166D89; border-top-left-radius:9px; border-bottom-left-radius:9px;" >
+    
+                                        <div class="w3-bar w3-large w3-hide-medium w3-hide-small" style="color:white; background-color:#166D89;  border-top-left-radius:9px;">
+                                              <div class="w3-dropdown-hover ">
+                                                <button class="w3-button w3-hover-text-black w3-hover-white" style="color:white; background-color:#166D89" >&#9776;</button>
+                                                <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-padding w3-center" style="height:contain; font-size:15px; width:20%; color:white; background-color:#166D89;  border-top-left-radius:9px; border-bottom-left-radius:9px;">
+                                                    <a href="Details.aspx" style=" text-decoration:none;" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey">Patient Details</a>
+                                                    <a href="gcs.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">GCS</a>
+                                                    <a href="vitals.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Vitals</a>
+                                                    <a href="fever.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Fever Pack</a>
+                                                    <a href="lab.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Lab Investigations</a>
+                                                    <a href="surgery.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Surgery Details</a>
+                                                    <a href="BldTrans.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Blood Transfusions</a>
+                                                    <a href="Infusions.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Infusions</a>
+                                                    <a href="IO.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Last 24H I/O</a>
+                                                    <a href="documents.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Upload Documents</a>
+                                                    <a href="issues.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Issues</a>
+                                                    <a href="Discharge.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Discharge Status</a>
+                                                    <a href="ventilation.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Ventilation</a>
+                                                    <a href="plan.aspx" class="w3-bar-item w3-button w3-border-bottom w3-hover-white w3-hover-text-blue-grey" style=" text-decoration:none;">Today's Plan</a>
+                                                </div>
+                                            </div>
+                                             <div class="w3-bar-item w3-text-amber w3-right" id="uhid" runat="server" visible="false">
+                                                  UHID: <asp:Label ID="l_uhid" Text="" runat="server" />&nbsp;<asp:LinkButton ID="btn_remove" Text="x" CssClass="w3-amber w3-text-white w3-badge w3-hover-text-amber w3-hover-white dec" runat="server" OnClick="btn_remove_Click" />
+                                             </div>
+                                          </div>
+
+                                        <div class="w3-padding">
+                                            <div class="w3-row w3-margin-top w3-padding">
+                                                <div id="heading" runat="server" class="w3-row w3-center w3-margin-top w3-xxlarge w3-text"></div>
+                                            </div>
+                                            <div class="" style="padding:20px 10px 0px 10px;">
+                                                <%--<img src="Images/bld.jpg"  class="w3-round-xlarge" width="100%"  style="background-color:white;"/>--%>
+                                                <asp:Image ID="side_img" ImageUrl="" BackColor="White" Width="100%" CssClass="w3-round-xlarge" runat="server" />
+                                             </div>
+                                            <%--<div class="w3-padding-small w3-text w3-large">Save vitalsg uyvjvv ugjhb ugjh gu bkgujgu </div>--%>
+                                        </div>
+
+                                    </div>
+                                    
+
+                                    <div class="w3-col l9 s12 m12" style="position:relative;">
+                                        <div class="w3-col s12 w3-margin-bottom w3-hide-large w3-padding" style="color:white; background-color:#166D89; border-top-left-radius:9px; border-top-right-radius:9px;" >
+                                            <div class="w3-row">
+                                                <div id="heading2" runat="server" class="w3-row w3-center w3-xxlarge w3-text"></div>
+                                            </div>
+                                        </div>
+                                        <div class="w3-white w3-padding-xlarge" style="border-top-right-radius:9px; border-bottom-right-radius:9px;">
+                                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                            </asp:ContentPlaceHolder>
+                                        </div>
+                                        <div class="" style="margin-top:50px;"></div>
+                                        <div class="w3-bar w3-padding-small w3-row w3-hide-medium w3-hide-small" style="margin-top:20px; width:100%; position:absolute; bottom:0;">
+                                            <asp:LinkButton ID="btn_left" CssClass="w3-text-white w3-button w3-col s3 w3-round-large" OnClick="move_left1" BackColor="#166D89"  runat="server" >&#10094; Previous</asp:LinkButton>
+                                            <asp:LinkButton ID="btn_right" CssClass="w3-text-white w3-button w3-col s3 w3-right w3-round-large" OnClick="move_right2" BackColor="#166D89" runat="server" >Next &#10095;</asp:LinkButton>
+                                        </div>
+                                    </div>
+                                </div>                                
+                                
+                            </div>
+                            <div class="w3-bar w3-row w3-hide-large" style="margin-top:5px;  width:100%; ">
+                                <asp:LinkButton ID="btn_left1" CssClass="w3-text-white w3-button w3-col s6" OnClick="move_left1" BackColor="#166D89"  runat="server" >&#10094; Previous</asp:LinkButton>
+                                <asp:LinkButton ID="btn_right1" CssClass="w3-text-white w3-button w3-col s6 w3-right" OnClick="move_right2" BackColor="#166D89" runat="server" >Next &#10095;</asp:LinkButton>
+                            </div>
+                        </div>  
+                        <div class="w3-col l1 w3-hide-medium w3-hide-small w3-cell-row w3-padding-large "style="">
+                           <%--<div class="w3-cell w3-cell-middle" style="text-align:center;">
+                                <asp:ImageButton ID="btn_right" ClientIDMode="Static"  ImageUrl="Images/right.png" OnClick="move_right" CssClass="arrow" runat="server" />
+                            </div>--%>
+                        </div> 
+                    </div> 
+                  
+                  
+                </div>
+           </div>
+            <div class="w3-bar w3-bottom w3-gray w3-padding-small w3-large">
+            </div>
+        </div>
+    </form>
+</body>
+</html>
